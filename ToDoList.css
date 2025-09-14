@@ -4,4 +4,9 @@ div#listItems {
     height: 500px; 
     margin-left: 35px; 
     margin-top: 50px;
+}  
+
+div#tasks {
+    margin-left: 25px;
 }
+

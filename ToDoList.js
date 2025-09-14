@@ -1,12 +1,22 @@
 class ToDoList {  
 
     constructor() {
-        this.currentTasks = [];  
+        this.currentTasks = []; 
+        //this.map = new Map();  
     }
     
-    addItem(tasks) {
-        this.currentTasks.push(tasks); 
-        document.getElementById("tasks").textContent = this.currentTasks; 
+    addItem(tasks) { 
+        let taskDiv = document.getElementById("tasks");  
+        this.currentTasks.push(tasks);    
+        taskDiv.innerHTML = "";
+        this.currentTasks.forEach(t => {
+            let li = document.createElement("li"); 
+            let button = document.createElement("button");  
+            button.textContent = "Remove";
+            li.textContent = t + " "; // add a space before button 
+            li.appendChild(button); 
+            taskDiv.append(li);  
+        })
     } 
 
     removeItem(tasks) {  
