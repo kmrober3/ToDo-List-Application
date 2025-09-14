@@ -9,29 +9,33 @@ class ToDoList {
         let taskDiv = document.getElementById("tasks");  
         this.currentTasks.push(tasks);    
         taskDiv.innerHTML = "";
-        this.currentTasks.forEach(t => {
+        this.currentTasks.forEach(t => { 
             let li = document.createElement("li"); 
-            let button = document.createElement("button");  
-            button.textContent = "Remove";
+            let button = document.createElement("button");     
+            button.id = t; 
+            button.textContent = "Remove";   
+            //console.log(document.getElementById(t));
             li.textContent = t + " "; // add a space before button 
             li.appendChild(button); 
-            taskDiv.append(li);  
+            taskDiv.append(li);    
+            document.getElementById(t).addEventListener("click", (event) => { 
+                this.removeItem(li, button);
+            })
         })
-    } 
+    }  
 
-    removeItem(tasks) {  
-        let removeTasksIndex = this.currentTasks.indexOf(tasks); 
-        this.currentTasks.splice(removeTasksIndex, 1);   
-        document.getElementById("tasks").textContent = "";
-        document.getElementById("tasks").textContent = this.currentTasks;
-    } 
+    removeItem(task, button) { 
+        task.remove();
+        button.remove();
+    }
 
 } 
 
 let instance = new ToDoList();
 
 document.getElementById("press").addEventListener("click", (event) => {  
-    //console.log("Yes");
+    console.log("Yes");
     let input = document.getElementById("input").value;
     instance.addItem(input); 
-})
+}); 
+
