@@ -1,0 +1,7 @@
+div#listItems { 
+    border: 2px solid black; 
+    width: 1500px; 
+    height: 500px; 
+    margin-left: 35px; 
+    margin-top: 50px;
+}
