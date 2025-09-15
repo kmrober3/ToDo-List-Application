@@ -1,8 +1,7 @@
 class ToDoList {  
 
     constructor() {
-        this.currentTasks = []; 
-        //this.map = new Map();  
+        this.currentTasks = [];  
     }
     
     addItem(tasks) { 
@@ -11,22 +10,39 @@ class ToDoList {
         taskDiv.innerHTML = "";
         this.currentTasks.forEach(t => { 
             let li = document.createElement("li"); 
-            let button = document.createElement("button");     
-            button.id = t; 
-            button.textContent = "Remove";   
-            //console.log(document.getElementById(t));
-            li.textContent = t + " "; // add a space before button 
-            li.appendChild(button); 
-            taskDiv.append(li);    
-            document.getElementById(t).addEventListener("click", (event) => { 
-                this.removeItem(li, button);
+            let input = document.createElement("input");   
+            input.type = "checkbox";    
+            input.id = t; 
+            li.textContent = t + " "; // add a space before button  
+            li.appendChild(input); 
+            taskDiv.append(li);      
+        }); 
+
+        document.getElementById("clear").addEventListener("click", (event) => {
+            this.currentTasks = this.currentTasks.filter(t => { 
+                let cb = document.getElementById(t);
+                return !cb.checked; 
+            }) 
+ 
+            taskDiv.innerHTML = "";
+
+            this.currentTasks.forEach(t => {
+                let li = document.createElement("li");
+                let input = document.createElement("input"); 
+                input.id = t;
+                li.textContent = t + " ";
+                input.type = "checkbox"; 
+                li.appendChild(input);
+                taskDiv.append(li);
             })
         })
-    }  
+    } 
 
-    removeItem(task, button) { 
+    removeItem(task, input) { 
+        let specificIndex = this.currentTasks.indexOf(task);
+        this.currentTasks.splice(specificIndex, 1);  
         task.remove();
-        button.remove();
+        input.remove(); 
     }
 
 } 
@@ -38,4 +54,3 @@ document.getElementById("press").addEventListener("click", (event) => {
     let input = document.getElementById("input").value;
     instance.addItem(input); 
 }); 
-
