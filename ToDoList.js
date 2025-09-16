@@ -6,18 +6,22 @@ class ToDoList {
         this.count = 0;
     } 
     
-    addItem(tasks) {  
+    addItem(tasks) {    
+        if (!tasks || tasks.trim().length === 0) {
+            return; // do nothing if input is empty
+        }
         let taskDiv = document.getElementById("tasks");  
         this.currentTasks.push(tasks);    
-        taskDiv.innerHTML = "";
+        taskDiv.innerHTML = ""; 
         this.currentTasks.forEach(t => {  
             let li = document.createElement("li"); 
             let input = document.createElement("input");    
             input.type = "checkbox";    
             input.id = t; 
-            li.textContent = t + " "; // add a space before button  
-            li.style.fontSize = "20px"; 
-            input.style.padding = "60px";
+            li.textContent = t + " "; // add a space before button   
+            li.style.fontSize = "18px";
+            input.style.width = "17px";
+            input.style.height = "17px";
             li.appendChild(input);  
             taskDiv.append(li);        
             this.store.setItem(t, "not done");   
@@ -37,7 +41,7 @@ class ToDoList {
         console.log(this.currentTasks);
         this.currentTasks = this.currentTasks.filter(t => { 
             let cb = document.getElementById(t);    
-            if (cb.checked) { 
+            if (cb && cb.checked) { 
                 console.log("HI");
                 this.store.setItem(t, "done");
             }
@@ -52,14 +56,17 @@ class ToDoList {
             let input = document.createElement("input"); 
             input.id = t;
             li.textContent = t + " ";
-            input.type = "checkbox"; 
+            input.type = "checkbox";  
+            li.style.fontSize = "18px";
+            input.style.width = "17px";
+            input.style.height = "17px";
             li.appendChild(input);
             taskDiv.append(li);
         }); 
         //console.log(this.store);
     } 
 
-    reloadItems() {   
+    reloadItems() {    
         let taskDiv = document.getElementById("tasks");
         taskDiv.innerHTML = "";   
         let i = 0; 
@@ -72,7 +79,7 @@ class ToDoList {
                 input.type = "checkbox";  
                 input.id = this.store.key(i); 
                 li.textContent = this.store.key(i) + " ";  
-                li.style.fontSize = "20px";
+                li.style.fontSize = "18px";
                 input.style.width = "17px";
                 input.style.height = "17px";
                 li.appendChild(input);
@@ -95,7 +102,10 @@ let instance = new ToDoList();
 
 document.getElementById("press").addEventListener("click", (event) => {   
     //console.log("Yes");
-    let input = document.getElementById("inputs").value;
+    let input = document.getElementById("inputs").value; 
+    if (input.length < 1) {
+        throw new Error("Improper input");
+    }
     instance.addItem(input); 
 });  
 
