@@ -1,21 +1,54 @@
-div#listItems { 
+div#listItems {  
     border: 2px solid black; 
-    width: 800px; 
-    height: 250px; 
-    margin-left: 35px; 
-    margin-top: 50px;
+    width: 450px; 
+    height: 300px;   
+    margin-left: auto;
+    margin-right: auto; 
+    margin-top: 80px; 
+    position: relative;
+    padding-bottom: 50px; 
+    background-color:ghostwhite;
 }  
 
 div#tasks {
-    margin-left: 25px;
+    margin-left: 40px; 
+    max-height: 200px;
+    overflow-y: auto;
 } 
 
 form#block {
-    margin-left: 35px; 
-    margin-top: 20px;
+    margin-left: 40px; 
+    margin-top: -15px;
 } 
 
-header#Introduction { 
-    text-align: center;
-}
+header#Introduction {  
+    margin-left: 20px; 
+    margin-bottom: 200x; 
+    padding: 20px; 
+    font-size: 30px; 
+    font-weight: bold;
+} 
 
+button#clear {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+} 
+
+body {
+    background-color:azure;
+} 
+
+button#press {
+    border-radius: 5px; 
+    background-color: dodgerblue;
+    color: white; 
+    font: icon;
+} 
+
+button#clear {
+    padding: 8px; 
+    background-color: gainsboro;
+    color: black; 
+    font:icon;
+}

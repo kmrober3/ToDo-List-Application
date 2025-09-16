@@ -12,13 +12,18 @@ class ToDoList {
         taskDiv.innerHTML = "";
         this.currentTasks.forEach(t => {  
             let li = document.createElement("li"); 
-            let input = document.createElement("input");   
+            let input = document.createElement("input");    
             input.type = "checkbox";    
             input.id = t; 
             li.textContent = t + " "; // add a space before button  
-            li.appendChild(input); 
-            taskDiv.append(li);       
-            this.store.setItem(t, "not done");
+            li.style.fontSize = "20px"; 
+            input.style.padding = "60px";
+            li.appendChild(input);  
+            taskDiv.append(li);        
+            this.store.setItem(t, "not done");   
+            let inputBox = document.getElementById("inputs"); 
+            inputBox.value = "";
+            inputBox.placeholder = "Add new item";
         }); 
 
         document.getElementById("clear").addEventListener("click", (event) => { 
@@ -66,7 +71,10 @@ class ToDoList {
                 let input = document.createElement("input");
                 input.type = "checkbox";  
                 input.id = this.store.key(i); 
-                li.textContent = this.store.key(i) + " ";
+                li.textContent = this.store.key(i) + " ";  
+                li.style.fontSize = "20px";
+                input.style.width = "17px";
+                input.style.height = "17px";
                 li.appendChild(input);
                 taskDiv.append(li); 
 
@@ -78,7 +86,7 @@ class ToDoList {
             } 
             i++;
         } 
-        console.log(this.store);
+        //console.log(this.store);
     }
 
 } 
@@ -87,7 +95,7 @@ let instance = new ToDoList();
 
 document.getElementById("press").addEventListener("click", (event) => {   
     //console.log("Yes");
-    let input = document.getElementById("input").value;
+    let input = document.getElementById("inputs").value;
     instance.addItem(input); 
 });  
 

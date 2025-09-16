@@ -7,15 +7,16 @@
         <link rel="stylesheet" type="text/css" href="ToDoList.css">
     </head> 
     <body> 
-        <header id="Introduction">ToDo List</header>
+        <!--<header id="Introduction">ToDo List</header>-->
         <div id="listItems"> 
+            <header id="Introduction">ToDo List</header> 
+            <form id="block">
+                <input id="inputs" name="toDoTasks" type="text"> 
+                <button id="press" type="button">Add</button> 
+            </form>    
             <div id="tasks"></div><br>
+            <button id="clear" type="button">Clear Completed</button>
         </div> 
-        <form id="block">
-            <input id="input" name="toDoTasks" type="text"> 
-            <button id="press" type="button">Enter</button> 
-        </form>  
-        <button id="clear" type="button">Clear</button>
         <script src = "ToDoList.js"></script>
     </body> 
 
